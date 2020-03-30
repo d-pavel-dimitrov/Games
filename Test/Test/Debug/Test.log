@@ -1,2 +1,5 @@
 ﻿  main.cpp
-  Test.vcxproj -> D:\C++ games\My first game\Test\Debug\Test.exe
+  MainMenu.cpp
+d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(18): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating Code...
+  Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe

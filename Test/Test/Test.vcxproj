@@ -123,6 +123,10 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\C++ games\SFML-2.5.1\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\C++ games\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Windows\MainMenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Windows\MainMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
