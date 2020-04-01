@@ -126,6 +126,7 @@
     <ClCompile Include="Windows\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Windows\menuDefines.h" />
     <ClInclude Include="Windows\MainMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

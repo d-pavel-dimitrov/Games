@@ -23,7 +23,8 @@ public:
 
 	//navigate through the menu with up and down arrow keys 
 	void MoveUp();
-	void MoveDown(); 
+	void MoveDown();
+	int getPressedItem() { return selectedItemIndex; }
 };
 
 #endif // !MainMenu_H_H
