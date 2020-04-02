@@ -8,10 +8,15 @@ Menu::Menu(const unsigned int& width,const unsigned int& height) {
 		std::cout << "Failed to load font" << std::endl;
 	}
 	selectedItemIndex = 0;
-
-	//sprites[0].setTextureRect(sf::IntRect(buttonsX, buttonsY, buttonsWidth, buttonsHeight));
-	//sprites[0] = buttonSprite;
-	//sprites[0].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
+	if (!buttonTexture.loadFromFile("../Test/Assets/GUI/Windows.png") || !logoTexture.loadFromFile("../Test/Assets/GUI/logo.png")) {
+		std::cout << "Didn't load textures" << std::endl;
+	}
+	double buttonOpacity = 0.4;
+	sf::Sprite sprite;
+	sprite.setTexture(logoTexture);
+	sprite.setScale(0.15, 0.15);
+	sprite.setPosition(sf::Vector2f(windowWidth - logoTexture.getSize().x*0.17 ,0));
+	menuSprites.push_back(sprite);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; ++i) {
 		menu[i].setFont(font);
 		if (selectedItemIndex == i) {
@@ -21,7 +26,14 @@ Menu::Menu(const unsigned int& width,const unsigned int& height) {
 			menu[i].setFillColor(sf::Color::White);
 		}
 		menu[i].setString(menuArray[i]);
-		menu[i].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * (i + 1)));
+		menu[i].setPosition(sf::Vector2f(width / 2 - menu[i].getLocalBounds().width / 2, (height) / (MAX_NUMBER_OF_ITEMS + 1) * (i + 1)));
+
+		sprite.setTexture(buttonTexture);
+		sprite.setTextureRect(sf::IntRect(buttonsX, buttonsY, buttonsWidth, buttonsHeight));
+		sprite.setScale(buttonOpacity, buttonOpacity);
+		sprite.setPosition(sf::Vector2f(windowWidth / 2 - buttonsWidth*buttonOpacity / 2,
+			((height) / (MAX_NUMBER_OF_ITEMS + 1) *(i + 1)) - buttonsY*buttonOpacity / 5));
+		menuSprites.push_back(sprite);
 	}
 	
 }
@@ -32,22 +44,11 @@ Menu::~Menu() {
 
 void Menu::draw(sf::RenderWindow &window) {
 
-	sf::Texture  buttonTexture;
-	if (!buttonTexture.loadFromFile("../Test/Assets/GUI/Windows.png")) {
-		std::cout << "Load failed" << std::endl;
-	}
-	unsigned int width = window.getSize().x;
-	unsigned int height = window.getSize().y;
-	double spriteWidth;
+	sf::Sprite buttonSprite;
+	//first element is the logo
+	window.draw(menuSprites[0]);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; ++i) {
-		sf::Sprite buttonSprite;
-		buttonSprite.setTexture(buttonTexture);
-		buttonSprite.setTextureRect(sf::IntRect(buttonsX, buttonsY, buttonsWidth, buttonsHeight));
-		buttonSprite.setScale(0.5, 0.4);
-		spriteWidth = buttonTexture.getSize().x * buttonSprite.getScale().x;
-		buttonSprite.setPosition(sf::Vector2f((width / 2 ), height / (MAX_NUMBER_OF_ITEMS + 1) *(i + 1)));
-		window.draw(buttonSprite);
-
+		window.draw(menuSprites[i+1]);
 		window.draw(menu[i]);
 	}
 }

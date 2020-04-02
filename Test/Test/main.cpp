@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Windows\MainMenu.h"
+#include "Windows\menuDefines.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Bomberman");
+	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Bomberman");
 
 	Menu menu(window.getSize().x, window.getSize().y);
 

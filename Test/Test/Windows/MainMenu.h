@@ -1,7 +1,7 @@
 #ifndef MainMenu_H_
 #define MainMenu_H_
 #include <string>
-#include <SFML/Graphics.hpp>
+#include <vector>
 #define MAX_NUMBER_OF_ITEMS 4
 
 class Menu {
@@ -9,6 +9,9 @@ private:
 	int selectedItemIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
+	sf::Texture buttonTexture;
+	sf::Texture logoTexture;
+	std::vector<sf::Sprite> menuSprites;
 	std::string menuArray[MAX_NUMBER_OF_ITEMS] = {
 		"Play",
 		"Options",
