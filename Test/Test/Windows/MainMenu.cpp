@@ -1,7 +1,5 @@
 #include <iostream>
-#include "SFML\Graphics.hpp"
 #include "MainMenu.h"
-#include "menuDefines.h"
 
 Menu::Menu(const unsigned int& width,const unsigned int& height) {
 	if (!font.loadFromFile("../Test/Fonts/arial.ttf")) {

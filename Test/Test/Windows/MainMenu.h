@@ -2,6 +2,9 @@
 #define MainMenu_H_
 #include <string>
 #include <vector>
+#include "SFML\Graphics.hpp"
+#include "menuDefines.h"
+
 #define MAX_NUMBER_OF_ITEMS 4
 
 class Menu {
@@ -23,7 +26,6 @@ public:
 	~Menu();
 
 	void draw(sf::RenderWindow &window);
-
 	//navigate through the menu with up and down arrow keys 
 	void MoveUp();
 	void MoveDown();

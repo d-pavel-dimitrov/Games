@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Windows\MainMenu.h"
 #include "Windows\menuDefines.h"
-
+#include "Units\Unit.h"
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Bomberman");
