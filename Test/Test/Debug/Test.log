@@ -1,10 +1,3 @@
-﻿  MainMenu.cpp
-d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(16): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(27): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\c++ games\bomberman\test\test\windows\mainmenu.cpp(33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Unit.cpp
-  main.cpp
-  Generating Code...
+﻿  main.cpp
+d:\c++ games\bomberman\test\test\main.cpp(12): warning C4305: 'argument': truncation from 'double' to 'float'
   Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe

@@ -2,7 +2,10 @@
 #define Unit_Defines_H_
 enum Actions {
 	Idle,
-	Run,
+	RunLeft,
+	RunRight,
+	RunTop,
+	RunBottom,
 	Die
  };
 
