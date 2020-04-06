@@ -123,10 +123,12 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\C++ games\SFML-2.5.1\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\C++ games\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Units\Tile.cpp" />
     <ClCompile Include="Units\Unit.cpp" />
     <ClCompile Include="Windows\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Units\Tile.h" />
     <ClInclude Include="Units\Unit.h" />
     <ClInclude Include="Units\UnitDefines.h" />
     <ClInclude Include="Windows\menuDefines.h" />

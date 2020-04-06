@@ -2,6 +2,7 @@
 #define MainMenu_H_
 #include <string>
 #include <vector>
+#include <iostream>
 #include "SFML\Graphics.hpp"
 #include "menuDefines.h"
 

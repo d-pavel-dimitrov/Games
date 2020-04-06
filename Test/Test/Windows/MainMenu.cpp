@@ -1,4 +1,3 @@
-#include <iostream>
 #include "MainMenu.h"
 
 Menu::Menu(const unsigned int& width,const unsigned int& height) {

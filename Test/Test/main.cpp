@@ -6,11 +6,11 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Bomberman");
-	sf::Time animationTime;
-	int frameTime = 50;
 	Menu menu(window.getSize().x, window.getSize().y);
 	Unit unit("../Test/Assets/Characters/Jack", 0.12, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4 / 5 - 20), 25);
-
+	sf::Time spriteRefreshRate = sf::milliseconds(200);
+	sf::Time elapsed;
+	sf::Clock clock; //timerstart to run after init
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -45,8 +45,14 @@ int main()
 		menu.draw(window);
 
 		//look clock and see to slow down animation
-		unit.draw(window, Actions::Idle);
-		window.display();
+		elapsed = clock.getElapsedTime();
+			unit.draw(window, Actions::Idle);
+		if (elapsed > spriteRefreshRate) {
+			window.display();
+			clock.restart();
+
+		}
+
 	}
 	return 0;
 }

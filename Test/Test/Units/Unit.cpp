@@ -79,5 +79,7 @@ void Unit::drawSpriteAction( std::vector<sf::Texture>& texture, Actions& action)
 void Unit::movePosition(int x, int y) {
 	int posX = sprite.getPosition().x;
 	int posY = sprite.getPosition().y;
-	sprite.move(sf::Vector2f(x, y));
+	if (posY + y > 123 && posY + y < 620) {
+		sprite.move(sf::Vector2f(x, y));
+	}
 }
