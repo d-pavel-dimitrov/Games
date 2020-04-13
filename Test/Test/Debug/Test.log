@@ -1,1 +1,6 @@
-﻿  Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe
+﻿  Map.cpp
+d:\c++ games\bomberman\test\test\units\tile.h(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\c++ games\bomberman\test\test\units\tile.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\c++ games\bomberman\test\test\windows\map.cpp(79): warning C4018: '<': signed/unsigned mismatch
+d:\c++ games\bomberman\test\test\windows\map.cpp(83): warning C4018: '<': signed/unsigned mismatch
+  Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe

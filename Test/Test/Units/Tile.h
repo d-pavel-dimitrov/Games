@@ -9,7 +9,7 @@
 class Tile {
 private:
 	//make variable same for all future creations
-	sf::Texture* texture;
+	sf::Texture* texture = nullptr;
 	sf::Sprite sprite;
 	bool canDestroy;
 	bool hasKey;
