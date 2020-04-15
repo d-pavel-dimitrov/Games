@@ -12,19 +12,18 @@ int main()
 
 	//menu
 	Menu menu(window.getSize().x, window.getSize().y);
-	Unit unit("../Test/Assets/Characters/Jack", 0.12, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4 / 5 - 20), 25);
 	
 	//map
 	Map map(Size::Small);
 
 	//timers
-	sf::Time spriteRefreshRate = sf::milliseconds(200);
+	sf::Time spriteRefreshRate = sf::milliseconds(50);
 	sf::Time elapsed;
 	sf::Clock clock; //timerstart to run after init
 	// 0 - main menu , 1 game, 2 options, 3exit
 	int windowMode = 0;
 	while (window.isOpen()) {
-		sf::Event event;
+		/*sf::Event event;
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 				case sf::Event::KeyReleased:
@@ -55,17 +54,14 @@ int main()
 				}
 		}
 
-		window.clear();
+		window.clear();*/
 		if (windowMode == 0) {
-			menu.draw(window);
-			//look clock and see to slow down animation
-			
-			unit.draw(window, Actions::Idle);
-			
+			menu.draw(window, windowMode);		
 		}
 		else if (windowMode == 1) {
-			map.draw(window);
+			map.draw(window, windowMode);
 		}
+
 		elapsed = clock.getElapsedTime();
 		if (elapsed > spriteRefreshRate) {
 			window.display();

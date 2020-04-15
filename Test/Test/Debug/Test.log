@@ -1,6 +1,11 @@
-﻿  Map.cpp
+﻿  main.cpp
+d:\c++ games\bomberman\test\test\windows\mainmenu.h(16): warning C4305: 'argument': truncation from 'double' to 'float'
 d:\c++ games\bomberman\test\test\units\tile.h(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\c++ games\bomberman\test\test\units\tile.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\c++ games\bomberman\test\test\windows\map.cpp(79): warning C4018: '<': signed/unsigned mismatch
-d:\c++ games\bomberman\test\test\windows\map.cpp(83): warning C4018: '<': signed/unsigned mismatch
+  Unit.cpp
+d:\c++ games\bomberman\test\test\units\unit.cpp(31): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+d:\c++ games\bomberman\test\test\units\unit.cpp(90): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+d:\c++ games\bomberman\test\test\units\unit.cpp(91): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+d:\c++ games\bomberman\test\test\units\unit.cpp(93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe

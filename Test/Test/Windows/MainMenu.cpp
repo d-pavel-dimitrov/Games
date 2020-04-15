@@ -32,15 +32,47 @@ Menu::Menu(const unsigned int& width,const unsigned int& height) {
 			((height) / (MAX_NUMBER_OF_ITEMS + 1) *(i + 1)) - buttonsY*buttonOpacity / 5));
 		menuSprites.push_back(sprite);
 	}
-	
+
 }
 
 Menu::~Menu() {
 
 }
 
-void Menu::draw(sf::RenderWindow &window) {
+void Menu::draw(sf::RenderWindow &window, int& windowMode) {
 
+	sf::Event event;
+	while (window.pollEvent(event)) {
+		switch (event.type) {
+		case sf::Event::KeyReleased:
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Up:
+				this->MoveUp();
+				unit.movePosition(0, -165);
+				break;
+			case sf::Keyboard::Down:
+				this->MoveDown();
+				unit.movePosition(0, 165);
+				break;
+			case sf::Keyboard::Return:
+				//press event for every button
+				windowMode = this->getPressedItem() + 1;
+				switch (this->getPressedItem()) {
+				case 0:
+					break;
+				}
+				break;
+
+			}
+			break;
+		case sf::Event::Closed:
+			window.close();
+			break;
+		}
+	}
+
+	window.clear();
 	sf::Sprite buttonSprite;
 	//first element is the logo
 	window.draw(menuSprites[0]);
@@ -48,6 +80,8 @@ void Menu::draw(sf::RenderWindow &window) {
 		window.draw(menuSprites[i+1]);
 		window.draw(menu[i]);
 	}
+
+	unit.draw(window, Actions::Idle);
 }
 
 //navigate through the menu with up and down arrow keys 

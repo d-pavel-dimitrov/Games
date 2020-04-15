@@ -2,7 +2,7 @@
 
 //path - point to the folder which contains all the images
 //exampe path ../Test/Assets/Characters/Jack
-Unit::Unit(const std::string& path, const double& opacity,sf::Vector2f startingPosition, int speed)
+Unit::Unit(const std::string& path, const double& opacity,sf::Vector2f startingPosition, float speed)
 	: textureToLoad(0), speed(speed) {
 	//load
 	int i = 0;
@@ -41,19 +41,19 @@ void Unit::draw(sf::RenderWindow& window, Actions action) {
 		break;
 	case RunLeft:
 		//mirror image when running
-		sprite.move(sf::Vector2f(-speed, 0));
+		sprite.move(-speed, 0);
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunRight:
-		sprite.setPosition(sf::Vector2f(speed, 0));
+		sprite.move(speed, 0);
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunTop:
-		sprite.move(sf::Vector2f(0, -speed));
+		sprite.move(0, -speed);
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunBottom:
-		sprite.move(sf::Vector2f(0, speed));
+		sprite.move(0, speed);
 		drawSpriteAction(runTextures, action);
 		break;
 	case Die:
@@ -65,13 +65,23 @@ void Unit::draw(sf::RenderWindow& window, Actions action) {
 }
 
 void Unit::drawSpriteAction( std::vector<sf::Texture>& texture, Actions& action) {
-	sprite.setTexture(texture[textureToLoad]);
-	if (textureToLoad ==  texture.size() - 1|| action != currentAction) {
+	bool  isFlipped = false;
+	++textureToLoad;
+
+	if (textureToLoad >  texture.size() - 1 || action != currentAction) {
 		textureToLoad = 0;
 	}
-	else {
-		textureToLoad++;
+	int width = texture[textureToLoad].getSize().x;
+	int height = texture[textureToLoad].getSize().y;
+	if (action == RunLeft) {
+		sprite.setTextureRect(sf::IntRect(width, 0, -width, height));
 	}
+	else if (action == RunRight) {
+		sprite.setTextureRect(sf::IntRect(0, 0, width, height));
+	}
+
+	sprite.setTexture(texture[textureToLoad]);
+
 	return;
 }
 
