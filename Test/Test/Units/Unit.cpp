@@ -2,7 +2,7 @@
 
 //path - point to the folder which contains all the images
 //exampe path ../Test/Assets/Characters/Jack
-Unit::Unit(const std::string& path, const double& opacity,sf::Vector2f startingPosition, float speed)
+Unit::Unit(const std::string& path, const float& opacity,sf::Vector2f startingPosition, float speed)
 	: textureToLoad(0), speed(speed) {
 	//load
 	int i = 0;
@@ -31,9 +31,10 @@ Unit::Unit(const std::string& path, const double& opacity,sf::Vector2f startingP
 	sprite.setScale(opacity, opacity);
 	sprite.setPosition(startingPosition);
 
+	bomb = new Bomb(sprite.getPosition());
 }
 //optimize??
-void Unit::draw(sf::RenderWindow& window, Actions action) {
+void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blocks, std::vector<Tile>& crates) {
 	switch (action)
 	{
 	case Idle:
@@ -42,18 +43,30 @@ void Unit::draw(sf::RenderWindow& window, Actions action) {
 	case RunLeft:
 		//mirror image when running
 		sprite.move(-speed, 0);
+		if (this->isColliding(blocks) || this->isColliding(crates)) {
+			sprite.move(speed, 0);
+		}
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunRight:
 		sprite.move(speed, 0);
+		if (this->isColliding(blocks) || this->isColliding(crates)) {
+			sprite.move(-speed, 0);
+		}
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunTop:
 		sprite.move(0, -speed);
+		if (this->isColliding(blocks) || this->isColliding(crates)) {
+			sprite.move(0, speed);
+		}
 		drawSpriteAction(runTextures, action);
 		break;
 	case RunBottom:
 		sprite.move(0, speed);
+		if (this->isColliding(blocks) || this->isColliding(crates)) {
+			sprite.move(0, -speed);
+		}
 		drawSpriteAction(runTextures, action);
 		break;
 	case Die:
@@ -87,9 +100,19 @@ void Unit::drawSpriteAction( std::vector<sf::Texture>& texture, Actions& action)
 
 //add x and y to the current position of the sprite
 void Unit::movePosition(int x, int y) {
-	int posX = sprite.getPosition().x;
-	int posY = sprite.getPosition().y;
+	float posX = sprite.getPosition().x;
+	float posY = sprite.getPosition().y;
 	if (posY + y > 123 && posY + y < 620) {
 		sprite.move(sf::Vector2f(x, y));
 	}
 }
+
+bool Unit::isColliding(std::vector<Tile>& objects) {
+	for (int i = 0; i < objects.size(); ++i) {
+		if (sprite.getGlobalBounds().intersects(objects[i].getBounds())) {
+			return true;
+		}
+	}
+	return false;
+}
+

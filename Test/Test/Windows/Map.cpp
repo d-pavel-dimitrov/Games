@@ -1,13 +1,13 @@
 #include "Map.h"
-
+float secondsTillExplosion = -1;
+bool isBombTriggered = false;
 Map::Map(Size size) {
 	int numberOfBlocks; // number of blocks to generate
 	int numberOfCrates; // number of crates to generate
 	int rows; // number of rows on the map that have blocks
 	int y = 0; //y pos of block/crate
 	int x = 0; // x pos of block/crate
-	Tile tile;
-	int blockSize = tile.getBlockSize(); // get size of block to calculate map size etc
+	int blockSize = 45; // get size of block to calculate map size etc
 
 	if (size == Size::Small) {
 		numberOfBlocks = 20;
@@ -96,32 +96,65 @@ Map::Map(Size size) {
 	float ScaleY = (float)mapHeigth / backgroundTexture.getSize().y;
 	backgroundSprite.setScale(ScaleX, ScaleY);
 
-	hero = new Unit("../Test/Assets/Characters/Jack", 0.05, sf::Vector2f(blockSize, 0), 0.6);
+	hero = new Unit("../Test/Assets/Characters/Jack", 0.05f, sf::Vector2f(blockSize + 10, 0), 0.6f);
 }
 
-void Map::draw(sf::RenderWindow& window, int& windowMode) {
+void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	sf::Event event;
 	Actions heroAction = Idle;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			heroAction = RunTop;
-		} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			heroAction = RunBottom;
-		} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			heroAction = RunRight;
-		} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			heroAction = RunLeft;
-		}	else {
-			heroAction = Idle;
+	while (window.pollEvent(event)) {
+		switch (event.type) {
+			case sf::Event::Closed:
+				window.close();
+				break;
+		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		heroAction = RunTop;
+	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		heroAction = RunBottom;
+	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		heroAction = RunRight;
+	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		heroAction = RunLeft;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		if (hero->getNumberOfBombs() > 0) {
+			secondsTillExplosion = clock.getElapsedTime().asMilliseconds() + 3000;
+			isBombTriggered = true;
+			hero->lowerNumberOfBombs();
+		}
+	}
+	else {
+		heroAction = Idle;
+	}
+		
+	window.clear();
+	window.draw(backgroundSprite);
+	for (int i = 0; i < blocks.size(); ++i) {
+	blocks[i].draw(window);
+	}
+
+	for (int i = 0; i < crates.size(); ++i) {
+	crates[i].draw(window);
+	}
+
+	if (secondsTillExplosion > 0) {
+		Bomb* bomb = hero->getBomb();
+		if (isBombTriggered) {
+			bomb->setPosition(hero->getPosition());
 		}
 
-		window.clear();
-		window.draw(backgroundSprite);
-		for (int i = 0; i < blocks.size(); ++i) {
-		blocks[i].draw(window);
+		if (clock.getElapsedTime().asMilliseconds() < secondsTillExplosion) {
+			bomb->draw(window);
+			isBombTriggered = false;
 		}
+		else if (clock.getElapsedTime().asMilliseconds() > secondsTillExplosion && clock.getElapsedTime().asMilliseconds() < secondsTillExplosion + 2000) {
+			hero->getBomb()->explode(window);
+			hero->riseNumberOfBombs();
+		}
+	}
+	hero->draw(window, heroAction, blocks, crates);
 
-		for (int i = 0; i < crates.size(); ++i) {
-		crates[i].draw(window);
-		}
-		hero->draw(window, heroAction);
 }

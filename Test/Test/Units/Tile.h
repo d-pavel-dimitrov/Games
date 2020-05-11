@@ -21,14 +21,14 @@ public:
 	void setKey(bool hasKey) { this->hasKey = hasKey; }
 	void setGate(bool hasGate) { this->hasGate = hasGate; }
 	//when declared the position of the tile is set to 0,0
-	void moveSprite(int x, int y) { sprite.move(x, y); }
+	void moveSprite(float x, float y) { sprite.move(x, y); }
 
 	bool getKey() const { return hasKey; }
 	bool getGate() const { return hasGate; }
 	bool destroy() const { return canDestroy; }
 	//getBlockSize return size of tile (usually all tiles should have the same width height and scale)
-	int getBlockSize() const { return (*texture).getSize().x*sprite.getScale().x; }
-
+	float getBlockSize() const { return (*texture).getSize().x*sprite.getScale().x; }
+	sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
 	void draw(sf::RenderWindow& window) { window.draw(sprite); }
 };
 

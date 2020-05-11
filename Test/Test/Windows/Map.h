@@ -20,12 +20,13 @@ private:
 	std::vector<Tile> blocks;
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
-	Unit* hero; // will change class later, only to check if move correctly and set collisions
+	Unit* hero = nullptr; // will change class later, only to check if move correctly and set collisions
 	//add enemies
 	//add hero
 public:
 	Map(Size size);
-	void draw(sf::RenderWindow& window, int& windowMode);
+	~Map() { if (hero != nullptr) { delete hero; } }
+	void draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock);
 	//~Map(); // if i create dynamical texture should be removed 
 };
 #endif // !MAP_H_

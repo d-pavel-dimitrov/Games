@@ -5,4 +5,5 @@ enum Size {
 	Medium,
 	Large
 };
+
 #endif // !Map_Defines_H_

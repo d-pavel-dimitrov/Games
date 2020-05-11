@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-Menu::Menu(const unsigned int& width,const unsigned int& height) {
+Menu::Menu(const float& width,const  float& height) {
 	if (!font.loadFromFile("../Test/Fonts/arial.ttf")) {
 		std::cout << "Failed to load font" << std::endl;
 	}
@@ -11,7 +11,7 @@ Menu::Menu(const unsigned int& width,const unsigned int& height) {
 	double buttonOpacity = 0.4;
 	sf::Sprite sprite;
 	sprite.setTexture(logoTexture);
-	sprite.setScale(0.15, 0.15);
+	sprite.setScale(0.15f, 0.15f);
 	sprite.setPosition(sf::Vector2f(windowWidth - logoTexture.getSize().x*0.17 ,0));
 	menuSprites.push_back(sprite);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; ++i) {
@@ -80,7 +80,7 @@ void Menu::draw(sf::RenderWindow &window, int& windowMode) {
 		window.draw(menuSprites[i+1]);
 		window.draw(menu[i]);
 	}
-
+	bool temp = true;
 	unit.draw(window, Actions::Idle);
 }
 

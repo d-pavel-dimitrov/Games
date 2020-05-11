@@ -7,7 +7,7 @@ Tile::Tile() : canDestroy(false), hasKey(false), hasGate(false) {
 	}
 	sprite.setTexture((*texture));
 	sprite.setPosition(0, 0);
-	sprite.setScale(0.4, 0.4);
+	sprite.setScale(0.4f, 0.4f);
 }
 
 Tile::Tile(bool canDestroy, bool hasKey, bool hasGate) 
@@ -24,5 +24,5 @@ Tile::Tile(bool canDestroy, bool hasKey, bool hasGate)
 	}
 	sprite.setTexture((*texture));
 	sprite.setPosition(0, 0);
-	sprite.setScale(0.4, 0.4);
+	sprite.setScale(0.4f, 0.4f);
 }

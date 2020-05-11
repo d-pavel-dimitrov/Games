@@ -13,7 +13,7 @@
 class Menu {
 private:
 	int selectedItemIndex;
-	Unit unit = Unit("../Test/Assets/Characters/Jack", 0.12, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4 / 5 - 20), 25);
+	Unit unit = Unit("../Test/Assets/Characters/Jack", 0.12f, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4f / 5 - 20), 25);
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 	sf::Texture buttonTexture;
@@ -27,7 +27,7 @@ private:
 	};
 
 public:
-	Menu(const unsigned int& width, const unsigned int& height);
+	Menu(const float& width, const float& height);
 	~Menu();
 
 	void draw(sf::RenderWindow &window, int& windowMode);
