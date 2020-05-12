@@ -1,4 +1,6 @@
 ﻿  Bomb.cpp
-d:\c++ games\bomberman\test\test\units\bomb.cpp(36): warning C4018: '<': signed/unsigned mismatch
-d:\c++ games\bomberman\test\test\units\bomb.cpp(49): warning C4018: '<': signed/unsigned mismatch
+d:\c++ games\bomberman\test\test\units\bomb.cpp(34): warning C4018: '<': signed/unsigned mismatch
+d:\c++ games\bomberman\test\test\units\bomb.cpp(36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\c++ games\bomberman\test\test\units\bomb.cpp(37): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\c++ games\bomberman\test\test\units\bomb.cpp(45): warning C4018: '<': signed/unsigned mismatch
   Test.vcxproj -> D:\C++ games\Bomberman\Test\Debug\Test.exe

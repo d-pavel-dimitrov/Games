@@ -10,6 +10,10 @@ private:
 	std::vector<sf::Sprite> explosions;
 	bool allowMovingThough;
 	int explosionSize = 1;
+	int spriteCounterX = 0;
+	int spriteCounterY = 0;
+	float explosionHeight = 130;
+	float explosionWidth = 130;
 public:
 	Bomb(const sf::Vector2f& unitPosition);
 	void draw(sf::RenderWindow& window);

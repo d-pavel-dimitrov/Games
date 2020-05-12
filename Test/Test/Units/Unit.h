@@ -34,7 +34,6 @@ public:
 
 	void setTextureToLoad(unsigned int pos) { this->textureToLoad = pos; }
 	void setIsDead(const bool isDead) { this->isDead = isDead; }
-	void lowerNumberOfBombs() { this->numberOfBombs--; }
-	void riseNumberOfBombs() { this->numberOfBombs++; }
+	void setNumberOfBombs(const int numberOfBombs) { this->numberOfBombs = numberOfBombs; }
 };
 #endif // !UNIT_H_

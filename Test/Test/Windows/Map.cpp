@@ -1,6 +1,7 @@
 #include "Map.h"
-float secondsTillExplosion = -1;
+float milisecTillExplosion = -1;
 bool isBombTriggered = false;
+float milisecExposion = 2000;
 Map::Map(Size size) {
 	int numberOfBlocks; // number of blocks to generate
 	int numberOfCrates; // number of crates to generate
@@ -121,9 +122,9 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if (hero->getNumberOfBombs() > 0) {
-			secondsTillExplosion = clock.getElapsedTime().asMilliseconds() + 3000;
+			milisecTillExplosion = clock.getElapsedTime().asMilliseconds() + 3000;
 			isBombTriggered = true;
-			hero->lowerNumberOfBombs();
+			hero->setNumberOfBombs(0);
 		}
 	}
 	else {
@@ -140,19 +141,21 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	crates[i].draw(window);
 	}
 
-	if (secondsTillExplosion > 0) {
+	if (milisecTillExplosion > 0) {
 		Bomb* bomb = hero->getBomb();
 		if (isBombTriggered) {
 			bomb->setPosition(hero->getPosition());
 		}
 
-		if (clock.getElapsedTime().asMilliseconds() < secondsTillExplosion) {
+		if (clock.getElapsedTime().asMilliseconds() < milisecTillExplosion) {
 			bomb->draw(window);
 			isBombTriggered = false;
 		}
-		else if (clock.getElapsedTime().asMilliseconds() > secondsTillExplosion && clock.getElapsedTime().asMilliseconds() < secondsTillExplosion + 2000) {
+		else if (clock.getElapsedTime().asMilliseconds() > milisecTillExplosion && clock.getElapsedTime().asMilliseconds() < milisecTillExplosion + milisecExposion) {
 			hero->getBomb()->explode(window);
-			hero->riseNumberOfBombs();
+		}
+		else {
+			hero->setNumberOfBombs(1);
 		}
 	}
 	hero->draw(window, heroAction, blocks, crates);
