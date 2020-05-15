@@ -43,7 +43,7 @@ void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blo
 	case RunLeft:
 		//mirror image when running
 		sprite.move(-speed, 0);
-		if (this->isColliding(blocks) || this->isColliding(crates)) {
+		if (this->isColliding(blocks) || this->isColliding(crates) || this->sprite.getPosition().x < 0) {
 			sprite.move(speed, 0);
 		}
 		drawSpriteAction(runTextures, action);
@@ -57,7 +57,7 @@ void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blo
 		break;
 	case RunTop:
 		sprite.move(0, -speed);
-		if (this->isColliding(blocks) || this->isColliding(crates)) {
+		if (this->isColliding(blocks) || this->isColliding(crates) || this->sprite.getPosition().y < 0) {
 			sprite.move(0, speed);
 		}
 		drawSpriteAction(runTextures, action);
@@ -108,8 +108,12 @@ void Unit::movePosition(int x, int y) {
 }
 
 bool Unit::isColliding(std::vector<Tile>& objects) {
+	sf::FloatRect object;
 	for (int i = 0; i < objects.size(); ++i) {
-		if (sprite.getGlobalBounds().intersects(objects[i].getBounds())) {
+		object = objects[i].getBounds();
+		object.width = object.width - 10;
+		object.height = object.height - 10;
+		if (sprite.getGlobalBounds().intersects(object)) {
 			return true;
 		}
 	}

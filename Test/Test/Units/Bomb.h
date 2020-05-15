@@ -2,6 +2,8 @@
 #define BOMB_H_
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include "Tile.h"
 #include "SFML\Graphics.hpp"
 class Bomb {
 private:
@@ -20,5 +22,6 @@ public:
 	void explode(sf::RenderWindow& window);
 	sf::Vector2f getPosition() const { return bombSprite.getPosition(); }
 	void setPosition(const sf::Vector2f position) { bombSprite.setPosition(position); }
+	void isExplosionColidingWithCrates(std::vector<Tile>& crates);
 };
 #endif // !BOMB_H_

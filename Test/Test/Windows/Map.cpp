@@ -155,6 +155,7 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 			hero->getBomb()->explode(window);
 		}
 		else {
+			hero->getBomb()->isExplosionColidingWithCrates(crates);
 			hero->setNumberOfBombs(1);
 		}
 	}

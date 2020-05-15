@@ -37,10 +37,10 @@ void Bomb::explode(sf::RenderWindow& window) {
 		explosions[i].setScale(0.4, 0.4);  // change scale to match
 
 	}
-	explosions[0].move(sf::Vector2f(-width, 0));
-	explosions[1].move(sf::Vector2f(width, 0));
-	explosions[2].move(sf::Vector2f(0, -heigth));
-	explosions[3].move(sf::Vector2f(0, heigth));
+	explosions[0].move(sf::Vector2f(-(width + 15), 0));
+	explosions[1].move(sf::Vector2f(width - 15, 0));
+	explosions[2].move(sf::Vector2f(-15, -heigth));
+	explosions[3].move(sf::Vector2f(-15, heigth));
 
 	for (int i = 0; i < explosions.size(); i++) {
 		window.draw(explosions[i]);
@@ -53,4 +53,23 @@ void Bomb::explode(sf::RenderWindow& window) {
 		}
 	}
 	spriteCounterX++;
+}
+
+void Bomb::isExplosionColidingWithCrates(std::vector<Tile>& crates) {
+	sf::FloatRect crate;
+	for (int i = 0; i < explosions.size(); ++i) {
+		std::vector<Tile>::iterator itr = crates.begin();
+		while (itr != crates.end())
+		{
+			crate = itr->getBounds();
+			crate.width = crate.width - 15;
+			crate.height = crate.height - 15;
+			if (explosions[i].getGlobalBounds().intersects(crate)) {
+				crates.erase(itr);
+				//--itr??
+				break;
+			}
+			++itr;
+		}
+	}
 }
