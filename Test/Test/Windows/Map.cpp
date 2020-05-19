@@ -97,12 +97,15 @@ Map::Map(Size size) {
 	float ScaleY = (float)mapHeigth / backgroundTexture.getSize().y;
 	backgroundSprite.setScale(ScaleX, ScaleY);
 
-	hero = new Unit("../Test/Assets/Characters/Jack", 0.05f, sf::Vector2f(blockSize + 10, 0), 0.6f);
+	hero = new Hero("../Test/Assets/Characters/Jack", 0.05f, sf::Vector2f(blockSize + 10, 0), 0.6f);
+
 }
 
 void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	sf::Event event;
 	Actions heroAction = Idle;
+	sf::View view = window.getView();
+
 	while (window.pollEvent(event)) {
 		switch (event.type) {
 			case sf::Event::Closed:
@@ -117,6 +120,22 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 		heroAction = RunBottom;
 	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 		heroAction = RunRight;
+		float viewWidth = window.getView().getSize().x;
+		float heroPosX = hero->getPosition().x;
+		float moveView = 100;
+		if (heroPosX + moveView > mapWidth) {
+			moveView = (heroPosX + moveView) - mapWidth;
+		}
+		else if (mapWidth == viewWidth) {
+			moveView = 0;
+		}
+
+ 		if (hero->getPosition().x > viewWidth) {
+
+			view.move(1, .0f);
+			window.setView(view);
+		}
+		
 	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		heroAction = RunLeft;
 	}
@@ -160,5 +179,4 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 		}
 	}
 	hero->draw(window, heroAction, blocks, crates);
-
 }

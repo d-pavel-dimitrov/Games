@@ -6,6 +6,7 @@
 #include "SFML\Graphics.hpp"
 #include "menuDefines.h"
 #include "..\Units\Unit.h"
+#include "..\Units\Hero.h"
 #include "..\Units\UnitDefines.h"
 
 #define MAX_NUMBER_OF_ITEMS 4
@@ -13,7 +14,7 @@
 class Menu {
 private:
 	int selectedItemIndex;
-	Unit unit = Unit("../Test/Assets/Characters/Jack", 0.12f, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4f / 5 - 20), 25);
+	Hero hero = Hero("../Test/Assets/Characters/Jack", 0.12f, sf::Vector2f(windowWidth / 2 - buttonsWidth*0.4 / 2 - 80, windowHeight / (MAX_NUMBER_OF_ITEMS + 1) - buttonsY*0.4f / 5 - 20), 25);
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 	sf::Texture buttonTexture;

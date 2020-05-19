@@ -9,10 +9,10 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Bomberman");
-
+	sf::View view(sf::FloatRect(0,0,windowWidth,windowHeight));
+	window.setView(view);
 	//menu
 	Menu menu(window.getSize().x, window.getSize().y);
-	
 	//map
 	Map map(Size::Small);
 

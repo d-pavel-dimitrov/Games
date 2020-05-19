@@ -6,7 +6,7 @@
 #include "SFML\Graphics.hpp"
 #include "..\Units\Tile.h"
 #include "MapDefines.h"
-#include "..\Units\Unit.h"
+#include "..\Units\Hero.h"
 #include "..\Units\UnitDefines.h"
 //ToDo:
 //check mapHeigth, mapWidth is correct
@@ -20,7 +20,7 @@ private:
 	std::vector<Tile> blocks;
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
-	Unit* hero = nullptr; // will change class later, only to check if move correctly and set collisions
+	Hero* hero = nullptr; // will change class later, only to check if move correctly and set collisions
 	//add enemies
 	//add hero
 public:

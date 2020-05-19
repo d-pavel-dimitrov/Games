@@ -49,11 +49,11 @@ void Menu::draw(sf::RenderWindow &window, int& windowMode) {
 			{
 			case sf::Keyboard::Up:
 				this->MoveUp();
-				unit.movePosition(0, -165);
+				hero.setPosition(0, -165);
 				break;
 			case sf::Keyboard::Down:
 				this->MoveDown();
-				unit.movePosition(0, 165);
+				hero.setPosition(0, 165);
 				break;
 			case sf::Keyboard::Return:
 				//press event for every button
@@ -81,7 +81,7 @@ void Menu::draw(sf::RenderWindow &window, int& windowMode) {
 		window.draw(menu[i]);
 	}
 	bool temp = true;
-	unit.draw(window, Actions::Idle);
+	hero.draw(window, Actions::Idle);
 }
 
 //navigate through the menu with up and down arrow keys 

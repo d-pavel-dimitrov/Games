@@ -31,10 +31,9 @@ Unit::Unit(const std::string& path, const float& opacity,sf::Vector2f startingPo
 	sprite.setScale(opacity, opacity);
 	sprite.setPosition(startingPosition);
 
-	bomb = new Bomb(sprite.getPosition());
 }
 //optimize??
-void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blocks, std::vector<Tile>& crates) {
+/*void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blocks, std::vector<Tile>& crates) {
 	switch (action)
 	{
 	case Idle:
@@ -75,7 +74,7 @@ void Unit::draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blo
 	}
 	window.draw(sprite);
 	currentAction = action;
-}
+}*/
 
 void Unit::drawSpriteAction( std::vector<sf::Texture>& texture, Actions& action) {
 	bool  isFlipped = false;
@@ -99,12 +98,21 @@ void Unit::drawSpriteAction( std::vector<sf::Texture>& texture, Actions& action)
 }
 
 //add x and y to the current position of the sprite
-void Unit::movePosition(int x, int y) {
+void Unit::setPosition(int x, int y) {
 	float posX = sprite.getPosition().x;
 	float posY = sprite.getPosition().y;
 	if (posY + y > 123 && posY + y < 620) {
 		sprite.move(sf::Vector2f(x, y));
 	}
+}
+
+void Unit::movePosition(sf::RenderWindow& window, Actions& action, std::vector<sf::Texture>& textures, float x, float y, bool collides) {
+	if (collides) {
+		sprite.move(-x, -y);
+	}
+	drawSpriteAction(textures, action);
+	window.draw(sprite);
+	currentAction = action;
 }
 
 bool Unit::isColliding(std::vector<Tile>& objects) {
