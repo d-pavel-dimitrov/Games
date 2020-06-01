@@ -12,6 +12,6 @@ public:
 	bool getNumberOfBombs() const { return numberOfBombs; }
 	Bomb* getBomb() { return bomb; }
 	void setNumberOfBombs(const int numberOfBombs) { this->numberOfBombs = numberOfBombs; }
-	void draw(sf::RenderWindow& window, Actions action, std::vector<Tile>& blocks = std::vector<Tile>(), std::vector<Tile>& crates = std::vector<Tile>());
+	void draw(sf::RenderWindow& window, Actions action, const unsigned int& mapWidth = 0, std::vector<Tile>& blocks = std::vector<Tile>(), std::vector<Tile>& crates = std::vector<Tile>());
 };
 #endif // ! Hero_H

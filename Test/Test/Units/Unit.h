@@ -29,7 +29,7 @@ public:
 
 	float getSpeed() const { return speed; }
 
-	void movePosition(sf::RenderWindow& window, Actions& action, std::vector<sf::Texture>& textures, float x, float y, bool canMove);
+	void animateMovement(sf::RenderWindow& window, Actions& action, std::vector<sf::Texture>& textures, float x, float y, bool canMove);
 
 	void setIsDead(const bool isDead) { this->isDead = isDead; }
 

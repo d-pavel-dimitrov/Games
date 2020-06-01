@@ -104,7 +104,7 @@ Map::Map(Size size) {
 void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	sf::Event event;
 	Actions heroAction = Idle;
-	sf::View view = window.getView();
+	//sf::View view = window.getView();
 
 	while (window.pollEvent(event)) {
 		switch (event.type) {
@@ -119,23 +119,7 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		heroAction = RunBottom;
 	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		heroAction = RunRight;
-		float viewWidth = window.getView().getSize().x;
-		float heroPosX = hero->getPosition().x;
-		float moveView = 100;
-		if (heroPosX + moveView > mapWidth) {
-			moveView = (heroPosX + moveView) - mapWidth;
-		}
-		else if (mapWidth == viewWidth) {
-			moveView = 0;
-		}
-
- 		if (hero->getPosition().x > viewWidth) {
-
-			view.move(1, .0f);
-			window.setView(view);
-		}
-		
+		heroAction = RunRight;		
 	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		heroAction = RunLeft;
 	}
@@ -178,5 +162,5 @@ void Map::draw(sf::RenderWindow& window, int& windowMode, sf::Clock& clock) {
 			hero->setNumberOfBombs(1);
 		}
 	}
-	hero->draw(window, heroAction, blocks, crates);
+	hero->draw(window, heroAction,mapWidth, blocks, crates);
 }

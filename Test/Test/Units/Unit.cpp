@@ -106,7 +106,7 @@ void Unit::setPosition(int x, int y) {
 	}
 }
 
-void Unit::movePosition(sf::RenderWindow& window, Actions& action, std::vector<sf::Texture>& textures, float x, float y, bool collides) {
+void Unit::animateMovement(sf::RenderWindow& window, Actions& action, std::vector<sf::Texture>& textures, float x, float y, bool collides) {
 	if (collides) {
 		sprite.move(-x, -y);
 	}
